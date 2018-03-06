@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    电影
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<h3>
+				{{title}}
+			</h3>
+			<p>
+                 <img src= '{{cover}}' />
+                 <br>
+                 <br>
+				 片名：{{title}}
+				 <br>
+				 年代：{{year}}
+				 <br>
+				 产地：{{country}}
+				 <br>
+				 类别：{{category}}
+				 <br>
+				 评分：{{douban_rating}}
+				 <br>
+				 片长：{{duration}}
+				 <br>
+				 导演：{{director}}
+				 <br>
+				 简介：{{profile}}
+				 <br>
+				 下载地址：{{down_load}}
+				 <br>
+                 电影截图：
+                 <br>
+                 <img src= '{{screenshot}}' />
+			</p>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+
+
