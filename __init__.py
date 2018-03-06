@@ -56,7 +56,16 @@ def get_movie_show():
 
     return render_template('movie_show.html',**movie)
 
+@app.route('/login', methods=['get'])
+def get_login():
+    return render_template('login.html')
 
+@app.route('/login', methods=['post'])
+def submit_login():
+    a = {}
+    a['username'] = request.form['username']
+    a['password'] = request.form['password']
+    return render_template('movie_list.html', **a)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1')
