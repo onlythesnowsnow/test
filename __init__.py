@@ -7,6 +7,8 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 PRODUCT_FILENAME = 'movies.txt'
 #常量，存的是电影信息的文件名
+USER_FILENAME = 'user.txt'
+#常量，存的是存储用户信息的文件名
 
 def read_file(filename):
     '''
@@ -62,10 +64,26 @@ def get_login():
 
 @app.route('/login', methods=['post'])
 def submit_login():
-    a = {}
-    a['username'] = request.form['username']
-    a['password'] = request.form['password']
-    return render_template('movie_list.html', **a)
+    users = read_file(USER_FILENAME)
+    user = {}
+    logo = {}
+    n = 0
+    user['username'] = request.form['username']
+    user['password'] = request.form['password']
+    if user['username'] != '' and user['password'] != '':
+        for u in users:
+            n = n + 1
+            if user['username'] == u['username'] and user['password'] == u['password']:
+                #登录成功
+                return render_template('movie_list.html', **user)
+                break
+            if (n == len(users)):
+                logo['logo'] = u'用户名或密码错误'
+                return render_template('login_result.html', **logo)
+    else:
+        logo['logo'] = u'用户名或密码不能为空'
+        return render_template('login_result.html', **logo)
+
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1')
