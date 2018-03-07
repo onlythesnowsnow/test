@@ -3,12 +3,15 @@
 from flask import *
 import time
 import sys
+import requests
 reload(sys)
 sys.setdefaultencoding('utf-8')
-PRODUCT_FILENAME = 'movies.txt'
+MOVIES_FILENAME = 'movies.txt'
 #常量，存的是电影信息的文件名
 USER_FILENAME = 'user.txt'
 #常量，存的是存储用户信息的文件名
+LOG_FILENAME = 'movie.log'
+#常量，存的是日志文件名
 
 
 #文件操作
@@ -42,6 +45,8 @@ def write_file(filename,content):
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+
+#主页相关函数
 @app.route('/')
 def index():
     context = {
@@ -51,6 +56,8 @@ def index():
     }
     return render_template('index.html',**context)
 
+
+#测试相关函数
 @app.route('/form', methods=['post'])
 def submit_form():
 
@@ -64,15 +71,168 @@ def submit_form():
 def get_form():
     return render_template('form.html')
 
+
+
+#电影相关函数
 @app.route('/movie_show', methods=['get'])
 def get_movie_show():
 
-    movies = read_file(PRODUCT_FILENAME)  # 获取电影信息
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
     movie = movies[0]
 
     return render_template('movie_show.html',**movie)
 
+@app.route('/movie_show',methods=['get'])
+def get_movie_show0():
 
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie = movies[0]
+
+    return render_template('movie_show.html', **movie)
+
+
+@app.route('/movie_list', methods=['get'])
+def get_movie_list():
+    n = 0
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie0 = {}
+    movie1 = {}
+    movie2 = {}
+    movie3 = {}
+    movie4 = {}
+    movie5 = {}
+    movie6 = {}
+    movie7 = {}
+    movie8 = {}
+    movie9 = {}
+
+    movie0 = movies[n]
+    movie1 = movies[n+1]
+    movie2 = movies[n+2]
+    movie3 = movies[n+3]
+    movie4 = movies[n+4]
+    movie5 = movies[n+5]
+    movie6 = movies[n+6]
+    movie7 = movies[n+7]
+    movie8 = movies[n+8]
+    movie9 = movies[n+9]
+
+    return render_template('movie_list.html', **locals())
+
+@app.route('/movie_list_2', methods=['get'])
+def get_movie_list_2():
+    n = 10
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie0 = {}
+    movie1 = {}
+    movie2 = {}
+    movie3 = {}
+    movie4 = {}
+    movie5 = {}
+    movie6 = {}
+    movie7 = {}
+    movie8 = {}
+    movie9 = {}
+
+    movie0 = movies[n]
+    movie1 = movies[n+1]
+    movie2 = movies[n+2]
+    movie3 = movies[n+3]
+    movie4 = movies[n+4]
+    movie5 = movies[n+5]
+    movie6 = movies[n+6]
+    movie7 = movies[n+7]
+    movie8 = movies[n+8]
+    movie9 = movies[n+9]
+
+    return render_template('movie_list_2.html', **locals())
+
+
+@app.route('/movie_list_3', methods=['get'])
+def get_movie_list_3():
+    n = 20
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie0 = {}
+    movie1 = {}
+    movie2 = {}
+    movie3 = {}
+    movie4 = {}
+    movie5 = {}
+    movie6 = {}
+    movie7 = {}
+    movie8 = {}
+    movie9 = {}
+
+    movie0 = movies[n]
+    movie1 = movies[n + 1]
+    movie2 = movies[n + 2]
+    movie3 = movies[n + 3]
+    movie4 = movies[n + 4]
+    movie5 = movies[n + 5]
+    movie6 = movies[n + 6]
+    movie7 = movies[n + 7]
+    movie8 = movies[n + 8]
+    movie9 = movies[n + 9]
+
+    return render_template('movie_list_3.html', **locals())
+
+
+@app.route('/movie_list_4', methods=['get'])
+def get_movie_list_4():
+    n = 30
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie0 = {}
+    movie1 = {}
+    movie2 = {}
+    movie3 = {}
+    movie4 = {}
+    movie5 = {}
+    movie6 = {}
+    movie7 = {}
+    movie8 = {}
+    movie9 = {}
+
+    movie0 = movies[n]
+    movie1 = movies[n + 1]
+    movie2 = movies[n + 2]
+    movie3 = movies[n + 3]
+    movie4 = movies[n + 4]
+    movie5 = movies[n + 5]
+    movie6 = movies[n + 6]
+    movie7 = movies[n + 7]
+    movie8 = movies[n + 8]
+    movie9 = movies[n + 9]
+
+    return render_template('movie_list_4.html', **locals())
+
+
+@app.route('/movie_list_5', methods=['get'])
+def get_movie_list_5():
+    n = 40
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    movie0 = {}
+    movie1 = {}
+    movie2 = {}
+    movie3 = {}
+    movie4 = {}
+    movie5 = {}
+    movie6 = {}
+    movie7 = {}
+    movie8 = {}
+    movie9 = {}
+
+    movie0 = movies[n]
+    movie1 = movies[n + 1]
+    movie2 = movies[n + 2]
+    movie3 = movies[n + 3]
+    movie4 = movies[n + 4]
+    movie5 = movies[n + 5]
+    movie6 = movies[n + 6]
+    movie7 = movies[n + 7]
+    movie8 = movies[n + 8]
+    movie9 = movies[n + 9]
+
+    return render_template('movie_list_5.html', **locals())
 
 #用户登录相关函数
 @app.route('/login', methods=['get'])

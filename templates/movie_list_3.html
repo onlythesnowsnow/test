@@ -40,7 +40,7 @@
 				<tbody>
 					<tr>
 						<td>
-                            {{movie0['title']}}
+							{{movie0['title']}}
 						</td>
 						<td>
 							{{movie0['year']}}
@@ -272,7 +272,7 @@
 			</table>
 			<ul class="pagination">
 				<li>
-					 <a href="#">Prev</a>
+					 <a href="{{ url_for('get_movie_list_2') }}">Prev</a>
 				</li>
 				<li>
 					 <a href="{{ url_for('get_movie_list') }}">1</a>
@@ -290,12 +290,11 @@
 					 <a href="{{ url_for('get_movie_list_5') }}">5</a>
 				</li>
 				<li>
-					 <a href="{{ url_for('get_movie_list_2') }}">Next</a>
+					 <a href="{{ url_for('get_movie_list_4') }}">Next</a>
 				</li>
 			</ul>
 		</div>
 	</div>
 </div>
-
 
 {% endblock %}
