@@ -39,19 +39,19 @@
                     <li class="active"><a href="/">首页<span class="sr-only">(current)</span></a></li>
                     <li><a href="{{ url_for('get_form') }}">发布电影</a></li>
                 </ul>
-                <form class="navbar-form navbar-left" action="{{ url_for('get_form') }}">
+                <form class="navbar-form navbar-left" id="seek" action="{{ url_for('get_movie') }}" method="post">
                     <div class="form-group">
-                        <input name="q" type="text" class="form-control" placeholder="请输入关键字">
+                        <input name="q" id="q" type="q" class="form-control" placeholder="请输入查找电影关键字">
                     </div>
-                    <button type="submit" class="btn btn-default">查找</button>
+                    <button type="submit" class="btn btn-default" form="seek">查找</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     {% if user %}
                         <li><a href="{{ url_for('get_form') }}">{{ user.username }}</a></li>
                         <li><a href="{{ url_for('get_form') }}">注销</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('get_movie_list') }}">电影列表</a></li>
-                        <li><a href="{{ url_for('get_movie_show') }}">临时电影</a></li>
+                        <li><a href="{{ url_for('get_movie_list') }}">最新电影</a></li>
+                        <li><a href="{{ url_for('get_movie_all') }}">所有电影</a></li>
                         <li><a href="{{ url_for('get_login') }}">登录</a></li>
                         <li><a href="{{ url_for('get_register') }}">注册</a></li>
                     {% endif %}

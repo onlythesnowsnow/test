@@ -40,7 +40,17 @@ def write_file(filename,content):
         fw.seek(0)
         fw.truncate()
         fw.write(str(content))
-
+def write_log(username,operation):
+    '''
+    写日志函数
+    :param username:用户名
+    :param operation:用户的操作信息
+    :return:
+    '''
+    w_time = time.strftime('%Y-%m-%d %H%M%S')
+    with open(LOG_FILENAME,'a+') as fw:
+        log_content = '%s %s %s \n'%(w_time,username,operation)
+        fw.write(log_content)
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -74,21 +84,43 @@ def get_form():
 
 
 #电影相关函数
-@app.route('/movie_show', methods=['get'])
-def get_movie_show():
+@app.route('/base', methods=['get'])
+def get_movie_all():
 
+    return render_template('movie_all.html')
+
+@app.route('/movie_list',methods = ['post'])
+def get_movie_show_id():
+
+    movie = {}
     movies = read_file(MOVIES_FILENAME)  # 获取电影信息
-    movie = movies[0]
-
-    return render_template('movie_show.html',**movie)
-
-@app.route('/movie_show',methods=['get'])
-def get_movie_show0():
-
-    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
-    movie = movies[0]
+    x = request.form['id'].encode("utf-8")
+    x = int(x)
+    movie = movies[x]
 
     return render_template('movie_show.html', **movie)
+
+@app.route('/base',methods=['post'])
+#电影查询函数
+def get_movie():
+
+    movie = {}
+    logo = {}
+    movies = read_file(MOVIES_FILENAME)  # 获取电影信息
+    y = 0
+    movie['title'] = request.form['q']
+    if movie['title'] != '':
+        for x in movies:
+            if movie['title'] == x['title']:
+                movie = movies[y]
+                return render_template('movie_show.html', **movie)
+            y = y + 1
+            if (y == len(movies) ):
+                logo['logo'] = u'输入的电影不存在'
+                return render_template('movie_result.html', **logo)
+    else:
+        logo['logo'] = u'输入的电影名称不能为空'
+        return render_template('movie_result.html', **logo)
 
 
 @app.route('/movie_list', methods=['get'])
@@ -251,9 +283,9 @@ def submit_login():
         for u in users:
             n = n + 1
             if user['username'] == u['username'] and user['password'] == u['password']:
+                write_log(user['username'], '登录成功！')
                 #登录成功
-                return render_template('movie_list.html', **user)
-                break
+                return render_template('index.html', **user)
             if (n == len(users)):
                 logo['logo'] = u'用户名或密码错误'
                 return render_template('login_result.html', **logo)
@@ -283,6 +315,7 @@ def submit_register():
                 return render_template('register_result.html', **logo)
                 break
             if (n == len(users)):
+                write_log(user['username'], '注册成功！')
                 logo['logo'] = u'注册成功'
                 users.append(user)
                 write_file(USER_FILENAME, users)

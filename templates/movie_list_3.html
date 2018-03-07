@@ -14,6 +14,9 @@
 			<table class="table">
 				<thead>
 					<tr>
+                        <th>
+							id
+						</th>
 						<th>
 							片名
 						</th>
@@ -39,8 +42,11 @@
 				</thead>
 				<tbody>
 					<tr>
+                        <th>
+							20
+						</th>
 						<td>
-							{{movie0['title']}}
+                            {{movie0['title']}}
 						</td>
 						<td>
 							{{movie0['year']}}
@@ -62,6 +68,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							21
+						</th>
 						<td>
 							{{movie1['title']}}
 						</td>
@@ -85,6 +94,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							22
+						</th>
 						<td>
 							{{movie2['title']}}
 						</td>
@@ -108,6 +120,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							23
+						</th>
 						<td>
 							{{movie3['title']}}
 						</td>
@@ -131,6 +146,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							24
+						</th>
 						<td>
 							{{movie4['title']}}
 						</td>
@@ -154,6 +172,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							25
+						</th>
 						<td>
 							{{movie5['title']}}
 						</td>
@@ -177,6 +198,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							26
+						</th>
 						<td>
 							{{movie6['title']}}
 						</td>
@@ -200,6 +224,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							27
+						</th>
 						<td>
 							{{movie7['title']}}
 						</td>
@@ -223,6 +250,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							28
+						</th>
 						<td>
 							{{movie8['title']}}
 						</td>
@@ -246,6 +276,9 @@
 						</td>
 					</tr>
 					<tr>
+                        <th>
+							29
+						</th>
 						<td>
 							{{movie9['title']}}
 						</td>
@@ -270,6 +303,9 @@
 					</tr>
 				</tbody>
 			</table>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-4 column">
 			<ul class="pagination">
 				<li>
 					 <a href="{{ url_for('get_movie_list_2') }}">Prev</a>
@@ -293,6 +329,22 @@
 					 <a href="{{ url_for('get_movie_list_4') }}">Next</a>
 				</li>
 			</ul>
+		</div>
+		<div class="col-md-4 column">
+			<form id="movie_show_id" action="{{ url_for('get_movie_show_id') }}" method="post">
+				<div class="form-group">
+					 <label for="id"></label>
+                     <input type="id" class="form-control" name="id" id="id" placeholder="请输入要查看的电影序号" />
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4 column">
+            </br>
+            <button type="submit" class="btn btn-default" form="movie_show_id">提交</button>
+		</div>
+	</div>
+</div>
+
 		</div>
 	</div>
 </div>
