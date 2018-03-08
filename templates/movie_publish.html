@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% block title %}
+    发布电影
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-4 column">
+		</div>
+		<div class="col-md-4 column">
+			<form id="publish" action="{{ url_for('post_movie_publish') }}" method="post">
+				<div class="form-group">
+					 <label for="title">电影名称：</label>
+                     <input type="title" class="form-control" name="title" id="title" placeholder="请输入电影名称" />
+				</div>
+				<div class="form-group">
+					 <label for="year">电影年代：</label>
+                     <input type="year" class="form-control" name="year" id="year" placeholder="请输入电影年代"/>
+				</div>
+                <div class="form-group">
+					 <label for="country">电影产地：</label>
+                     <input type="country" class="form-control" name="country" id="country" placeholder="请输入电影产地"/>
+				</div>
+                <div class="form-group">
+					 <label for="category">电影类别：</label>
+                     <input type="category" class="form-control" name="category" id="category" placeholder="请输入电影类别"/>
+				</div>
+                <div class="form-group">
+					 <label for="duration">电影片长：</label>
+                     <input type="duration" class="form-control" name="duration" id="duration" placeholder="请输入电影片长"/>
+				</div>
+                <div class="form-group">
+					 <label for="director">电影导演：</label>
+                     <input type="director" class="form-control" name="director" id="director" placeholder="请输入电影导演"/>
+				</div>
+                <div class="form-group">
+					 <label for="profile">电影简介：</label>
+                     <input type="profile" class="form-control" name="profile" id="profile" placeholder="请输入电影简介"/>
+				</div>
+                </br>
+                <button type="submit" class="btn btn-default" form="publish">提交</button>
+			</form>
+		</div>
+		<div class="col-md-4 column">
+		</div>
+	</div>
+</div>
+
+{% endblock %}
