@@ -39,11 +39,38 @@
                  电影截图：
                  <br>
                  <img src= '{{screenshot}}' />
+				 <br>
+				 <br>
+				 用户评论：{{comment}}
 			</p>
 		</div>
 	</div>
 </div>
+<br>
 
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-8 column">
+			<form id="user_comment" action="{{ url_for('post_movie_comment') }}" method="post">
+				<div class="form-group">
+                     <input type="text" value = '{{title}}' class="form-control" name="title" id="title"  />
+				</div>
+
+				<div class="form-group">
+					 <label for="comment">您的评论：</label>
+                     <input type="comment" class="form-control" name="comment" id="comment" placeholder="请输入您的评论" />
+				</div>
+			</form>
+		</div>
+		<div class="col-md-4 column">
+			</br>
+			</br>
+			</br>
+			</br>
+			<button type="submit" class="btn btn-default" form="user_comment">提交</button>
+		</div>
+	</div>
+</div>
 {% endblock %}
 
 

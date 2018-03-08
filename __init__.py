@@ -108,6 +108,30 @@ def get_form():
     return render_template('form.html')
 '''
 
+#电影评论函数
+@app.route('/movie_show',methods = ['post'])
+def post_movie_comment():
+
+    movie = {}
+    logo = {}
+    movies = read_file(MOVIES_FILENAME)
+    y = 0
+    movie['title'] = request.form['title']
+    if movie['title'] != '':
+        for x in movies:
+            if movie['title'] == x['title']:
+                x['comment'] = request.form['comment']
+                write_file(MOVIES_FILENAME, movies)
+                logo['logo'] = u'评论成功'
+                write_log(admin, '添加了电影评论 电影名【%s】 ' % (movie['title']))
+                return render_template('movie_result.html',**logo)
+            y = y +1
+            if (y== len(movies)):
+                logo['logo'] = u'你评论的电影不存在'
+                return render_template('movie_result.html',**logo)
+    else:
+        logo['logo'] = u'你评论的电影名称不能为空'
+        return render_template('movie_result.html',**logo)
 
 
 #查看全部电影函数
@@ -386,8 +410,9 @@ def submit_login():
             n = n + 1
             if user['username'] == u['username'] and user['password'] == u['password']:
                 write_log(user['username'], '登录成功！')
+                logo['logo'] = u'欢迎您登录'
                 #登录成功
-                return render_template('index.html', **user)
+                return render_template('movie_result.html', **logo)
             if (n == len(users)):
                 logo['logo'] = u'用户名或密码错误'
                 return render_template('movie_result.html', **logo)
